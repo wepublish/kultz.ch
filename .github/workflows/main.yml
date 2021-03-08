@@ -13,7 +13,7 @@ jobs:
         name: checkout repository
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '12.x'
       - name: Build docker
         env:
           PROJECT_ID: kultz-ch
