@@ -1,0 +1,54 @@
+{
+  "name": "tsri.ch",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^12.0.0",
+    "yarn": "^1.17.0"
+  },
+  "scripts": {
+    "clean": "run-p --print-label clean:**",
+    "build": "run-s --print-label build:website build:api build:media",
+    "watch": "run-p --print-label watch:website watch:api watch:media watch:editor",
+    "start": "run-p --print-label start:api start:website start:media start:editor",
+    "watch:storybook": "yarn workspace @tsri/website watch:storybook",
+    "build:storybook": "yarn workspace @tsri/website build:storybook",
+    "start:website": "yarn workspace @tsri/website start",
+    "clean:website": "yarn workspace @tsri/website clean",
+    "build:website": "yarn workspace @tsri/website build",
+    "watch:website": "yarn workspace @tsri/website watch",
+    "generate:website:api": "yarn workspace @tsri/website generate:api",
+    "clean:api": "yarn workspace @tsri/api clean",
+    "build:api": "yarn workspace @tsri/api build",
+    "watch:api": "yarn workspace @tsri/api watch",
+    "start:api": "yarn workspace @tsri/api start",
+    "clean:media": "yarn workspace @tsri/media clean",
+    "build:media": "yarn workspace @tsri/media build",
+    "watch:media": "yarn workspace @tsri/media watch",
+    "start:media": "yarn workspace @tsri/media start",
+    "start:editor": "yarn workspace @tsri/editor start",
+    "watch:editor": "yarn workspace @tsri/editor watch",
+    "prettier": "prettier --write '{packages,services}/**/*.{js,ts,tsx,json}'",
+    "prettier-check": "prettier --check '{packages,services}/**/*.{js,ts,tsx,json}'",
+    "lint": "echo 'linting'"
+  },
+  "workspaces": [
+    "website",
+    "api",
+    "media",
+    "editor"
+  ],
+  "devDependencies": {
+    "cross-env": "^6.0.3",
+    "husky": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^1.11.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged --pattern \"src/**/*.{js,ts,tsx,json}\""
+    }
+  }
+}

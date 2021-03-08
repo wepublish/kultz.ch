@@ -1,0 +1,143 @@
+fragment FullTeaser on Teaser {
+  ... on ArticleTeaser {
+    style
+
+    image {
+      ...ImageRef
+    }
+
+    preTitle
+    title
+    lead
+
+    article {
+      ...ArticleRef
+    }
+  }
+
+  ... on PeerArticleTeaser {
+    style
+
+    image {
+      ...ImageRef
+    }
+
+    preTitle
+    title
+    lead
+
+    peer {
+      ...PeerWithProfile
+    }
+
+    articleID
+    article {
+      ...ArticleRef
+    }
+  }
+
+  ... on PageTeaser {
+    style
+
+    image {
+      ...ImageRef
+    }
+
+    preTitle
+    title
+    lead
+
+    page {
+      ...PageRef
+    }
+  }
+}
+
+fragment TitleBlockData on TitleBlock {
+  title
+  lead
+}
+
+fragment RichtTextBlockData on RichTextBlock {
+  richText
+}
+
+fragment ImageBlockData on ImageBlock {
+  caption
+  image {
+    ...ImageRef
+  }
+}
+
+fragment ImageGalleryBlockData on ImageGalleryBlock {
+  images {
+    caption
+    image {
+      ...ImageRef
+    }
+  }
+}
+
+fragment FacebookPostBlockData on FacebookPostBlock {
+  userID
+  postID
+}
+
+fragment InstagramPostBlockData on InstagramPostBlock {
+  postID
+}
+
+fragment TwitterTweetBlockData on TwitterTweetBlock {
+  userID
+  tweetID
+}
+
+fragment VimeoVideoBlockData on VimeoVideoBlock {
+  videoID
+}
+
+fragment YoutubeVideoBlockData on YouTubeVideoBlock {
+  videoID
+}
+
+fragment SoundCloudTrackBlockData on SoundCloudTrackBlock {
+  trackID
+}
+
+fragment EmbedBlockData on EmbedBlock {
+  title
+  url
+  width
+  height
+  styleCustom
+}
+
+fragment ListicleBlockData on ListicleBlock {
+  items {
+    title
+    richText
+    image {
+      ...ImageRef
+    }
+  }
+}
+
+fragment LinkPageBreakBlockData on LinkPageBreakBlock {
+  text
+  richText
+  linkURL
+  linkText
+  hideButton
+  linkTarget
+  styleOption
+  layoutOption
+  templateOption
+  image {
+    ...ImageRef
+  }
+}
+
+fragment QuoteBlockData on QuoteBlock {
+  quote
+  author
+}

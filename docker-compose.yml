@@ -1,0 +1,55 @@
+version: '3.7'
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    depends_on:
+      - media
+      - mongo
+    ports:
+      - "4000:4000"
+    environment:
+      - MEDIA_SERVER_URL=http://media:4001
+      - MEDIA_SERVER_TOKEN=secret
+      - HOST_URL=http://localhost:4000
+      - MONGO_URL=mongodb://mongo:27017/tsri
+
+  media:
+    build:
+      context: ./media
+      dockerfile: Dockerfile
+    ports:
+      - "4001:4001"
+    environment:
+      - STORAGE_PATH=./media
+      - TOKEN=secret
+      - NUM_CLUSTERS=1
+
+  editor:
+    build:
+      context: ./editor
+      dockerfile: Dockerfile
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=http://localhost:4000
+
+  website:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    depends_on:
+      - api
+      - media
+    ports:
+      - "5000:5000"
+    environment:
+      - API_URL=http://api:4000
+
+  mongo:
+    image: mongo:4.2.3-bionic
+    ports:
+      - 27018:27017
