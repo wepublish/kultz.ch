@@ -36,7 +36,7 @@ jobs:
           node-version: '10.x'
       - name: Create manifest
         env:
-          PROJECT_ID: wepublish-269314
+          PROJECT_ID: kultz-ch
         run: |
           node ./create-gke-manifest.js
           ls -al ./kubernetesConfigs
