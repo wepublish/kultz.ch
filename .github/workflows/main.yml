@@ -38,7 +38,7 @@ jobs:
         env:
           PROJECT_ID: wepublish-269314
         run: |
-          node ./config/create-gke-manifest.js
+          node ./create-gke-manifest.js
           ls -al ./kubernetesConfigs
       - name: Prepare and authenticate kubectl
         uses: google-github-actions/get-gke-credentials@main
