@@ -4,16 +4,16 @@ try {
   require('dotenv').config()
 } catch (e) {}
 
-const {CI_REGISTRY_IMAGE, CI_COMMIT_SHORT_SHA, CI_COMMIT_REF_NAME} = process.env
+const {GITHUB_SHA, GITHUB_REPOSITORY, GITHUB_REF, PROJECT_ID} = process.env
 
 let ENVIRONMENT_NAME = 'development'
-if (CI_COMMIT_REF_NAME === 'master') {
+if (GITHUB_REF === 'refs/heads/main' || GITHUB_REF === 'main') {
   ENVIRONMENT_NAME = 'production'
 }
-const NAMESPACE = envSwitch(ENVIRONMENT_NAME,'juanita', 'juanita-dev')
+const NAMESPACE = envSwitch(ENVIRONMENT_NAME,'kultz', 'kultz-dev')
 
-const domain = 'new.tsri.ch' // TODO: configure this
-const devDomain = 'new.tsri.dev'
+const domain = 'new.kultz.ch' // TODO: configure this
+const devDomain = 'new.kultz.dev'
 const domainCn = envSwitch(ENVIRONMENT_NAME, `${domain}`, `${devDomain}`)
 const domainSan = envSwitch(
   ENVIRONMENT_NAME,
@@ -189,7 +189,7 @@ async function applyWebsite() {
           containers: [
             {
               name: appName,
-              image: `${CI_REGISTRY_IMAGE}/website:${CI_COMMIT_SHORT_SHA}`,
+              image: `eu.gcr.io/${PROJECT_ID}/${GITHUB_REPOSITORY}/website:${GITHUB_SHA}`,
               env: [
                 {
                   name: 'NODE_ENV',
@@ -280,7 +280,7 @@ async function applyMediaServer() {
     apiVersion: 'v1',
     kind: 'PersistentVolumeClaim',
     metadata: {
-      name: 'juanita-media',
+      name: 'kultz-media',
       namespace: NAMESPACE
     },
     spec: {
@@ -329,7 +329,7 @@ async function applyMediaServer() {
           containers: [
             {
               name: appName,
-              image: `${CI_REGISTRY_IMAGE}/media:${CI_COMMIT_SHORT_SHA}`,
+              image: `eu.gcr.io/${PROJECT_ID}/${GITHUB_REPOSITORY}/media:${GITHUB_SHA}`,
               env: [
                 {
                   name: 'NODE_ENV',
@@ -347,7 +347,7 @@ async function applyMediaServer() {
                   name: 'TOKEN',
                   valueFrom: {
                     secretKeyRef: {
-                      name: 'juanita-secrets',
+                      name: 'kultz-secrets',
                       key: 'media_server_token'
                     }
                   }
@@ -387,7 +387,7 @@ async function applyMediaServer() {
             {
               name: 'media-volume',
               persistentVolumeClaim: {
-                claimName: 'juanita-media'
+                claimName: 'kultz-media'
               }
             }
           ]
@@ -514,18 +514,12 @@ async function applyApiServer() {
               secret: {
                 secretName: 'log-the-things'
               }
-            },
-            {
-              name: 'cloudsql-proxy-creds',
-              secret: {
-                secretName: 'cloudsql-tsri-main-db-credentials'
-              }
             }
           ],
           containers: [
             {
               name: appName,
-              image: `${CI_REGISTRY_IMAGE}/api:${CI_COMMIT_SHORT_SHA}`,
+              image: `eu.gcr.io/${PROJECT_ID}/${GITHUB_REPOSITORY}/api:${GITHUB_SHA}`,
               volumeMounts: [
                 {
                   "name": "google-cloud-key",
@@ -557,8 +551,8 @@ async function applyApiServer() {
                   name: 'MONGO_URL',
                   value: envSwitch(
                     ENVIRONMENT_NAME,
-                    'mongodb://mongo-production:27017/tsri',
-                    'mongodb://mongo-development:27017/tsri'
+                    'mongodb://mongo-production:27017/kultz',
+                    'mongodb://mongo-development:27017/kultz'
                   )
                 },
                 {
@@ -582,99 +576,8 @@ async function applyApiServer() {
                   name: 'MEDIA_SERVER_TOKEN',
                   valueFrom: {
                     secretKeyRef: {
-                      name: 'juanita-secrets',
+                      name: 'kultz-secrets',
                       key: 'media_server_token'
-                    }
-                  }
-                },
-                {
-                  name: 'OAUTH_GOOGLE_DISCOVERY_URL',
-                  value: 'https://accounts.google.com'
-                },
-                {
-                  name: 'OAUTH_GOOGLE_CLIENT_ID',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'oauth_google_client_id'
-                    }
-                  }
-                },
-                {
-                  name: 'OAUTH_GOOGLE_CLIENT_KEY',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'oauth_google_client_key'
-                    }
-                  }
-                },
-                {
-                  name: 'OAUTH_GOOGLE_REDIRECT_URL',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'oauth_google_redirect_url'
-                    }
-                  }
-                },
-               /* {
-                  name: 'OAUTH_WEPUBLISH_DISCOVERY_URL',
-                  value: envSwitch(ENVIRONMENT_NAME,
-                    'https://login.demo.wepublish.media/.well-known/openid-configuration',
-                    'https://login.dev.wepublish.media/.well-known/openid-configuration'
-                  )
-                },
-                {
-                  name: 'OAUTH_WEPUBLISH_CLIENT_ID',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'oauth_wepublish_client_id'
-                    }
-                  }
-                },
-                {
-                  name: 'OAUTH_WEPUBLISH_CLIENT_KEY',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'oauth_wepublish_client_key'
-                    }
-                  }
-                },
-                {
-                  name: 'OAUTH_WEPUBLISH_REDIRECT_URL',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'oauth_wepublish_redirect_url'
-                    }
-                  }
-                }, */
-                {
-                  name: 'MAILGUN_API_KEY',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'mailgun_api_key'
-                    }
-                  }
-                },
-                {
-                  name: 'MAILGUN_BASE_DOMAIN',
-                  value: 'api.eu.mailgun.net'
-                },
-                {
-                  name: 'MAILGUN_MAIL_DOMAIN',
-                  value: 'mg.tsrimails.ch'
-                },
-                {
-                  name: 'MAILGUN_WEBHOOK_SECRET',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'mailgun_webhook_secret'
                     }
                   }
                 },
@@ -682,106 +585,23 @@ async function applyApiServer() {
                   name: 'JWT_SECRET_KEY',
                   valueFrom: {
                     secretKeyRef: {
-                      name: 'juanita-secrets',
+                      name: 'kultz-secrets',
                       key: 'jwt_secret_key'
                     }
                   }
                 },
                 {
-                  name: 'STRIPE_SECRET_KEY',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'stripe_secret_key'
-                    }
-                  }
-                },
-                {
-                  name: 'STRIPE_WEBHOOK_SECRET',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'stripe_webhook_secret'
-                    }
-                  }
-                },
-                {
-                  name: 'PAYREXX_INSTANCE_NAME',
-                  value: 'tsridev'
-                },
-                {
-                  name: 'PAYREXX_API_SECRET',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'payrexx_api_secret'
-                    }
-                  }
-                },{
-                  name: 'SENTRY_DSN',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-secrets',
-                      key: 'sentry_dsn'
-                    }
-                  }
-                },{
                   name: 'SENTRY_ENV',
                   value: envSwitch(ENVIRONMENT_NAME, 'production', 'staging')
                 },{
                   name: 'GOOGLE_PROJECT',
                   valueFrom: {
                     secretKeyRef: {
-                      name: 'juanita-secrets',
+                      name: 'kultz-secrets',
                       key: 'google_project'
                     }
                   }
-                },
-                {
-                  name: 'PGHOST',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-migration-secrets',
-                      key: 'pghost'
-                    }
-                  }
-                },
-                {
-                  name: 'PGUSER',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-migration-secrets',
-                      key: 'pguser'
-                    }
-                  }
-                },
-                {
-                  name: 'PGDATABASE',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-migration-secrets',
-                      key: 'pgdatabase'
-                    }
-                  }
-                },
-                {
-                  name: 'PGPASSWORD',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-migration-secrets',
-                      key: 'pgpassword'
-                    }
-                  }
-                },
-                {
-                  name: 'PGPORT',
-                  valueFrom: {
-                    secretKeyRef: {
-                      name: 'juanita-migration-secrets',
-                      key: 'pgport'
-                    }
-                  }
-                },
+                }
               ],
               ports: [
                 {
@@ -798,24 +618,7 @@ async function applyApiServer() {
               },
               terminationMessagePath: '/dev/termination-log',
               terminationMessagePolicy: 'File'
-            },
-            {
-              name: 'cloudsql-proxy',
-              image: 'gcr.io/cloudsql-docker/gce-proxy:1.17',
-              command: [
-                "/cloud_sql_proxy",
-                "-instances=tsri-246213:europe-west6:tsri-main-db=tcp:5432",
-                "-credential_file=/secrets/cloudsql/credentials.json"
-              ],
-              volumeMounts: [
-                {
-                  name: 'cloudsql-proxy-creds',
-                  mountPath: '/secrets/cloudsql',
-                  readOnly: true
-
-                }
-              ]
-            },
+            }
           ]
         }
       }
@@ -937,7 +740,7 @@ async function applyEditor() {
           containers: [
             {
               name: appName,
-              image: `${CI_REGISTRY_IMAGE}/editor:${CI_COMMIT_SHORT_SHA}`,
+              image: `eu.gcr.io/${PROJECT_ID}/${GITHUB_REPOSITORY}/editor:${GITHUB_SHA}`,
               env: [
                 {
                   name: 'NODE_ENV',
