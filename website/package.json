@@ -42,6 +42,8 @@
     "react-dom": "^16.9.0",
     "react-helmet-async": "^1.0.2",
     "slate": "^0.58.1",
+    "slate-history": "^0.59.0",
+    "slate-hyperscript": "^0.59.0",
     "slate-react": "^0.58.1"
   },
   "devDependencies": {

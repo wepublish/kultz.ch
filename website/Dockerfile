@@ -12,8 +12,9 @@ ENV PORT=5000
 COPY --chown=node:node ./package.json ./package.json
 RUN yarn install
 
-COPY --chown=node:node .next/ .next/
-COPY --chown=node:node ./public ./public
+COPY --chown=node:node ./dist/ ./dist/
+COPY --chown=node:node ./static ./static
+COPY --chown=node:node ./assets ./assets
 
 EXPOSE 5000
-CMD [ "yarn", "start", "-p", "5000"]
+CMD [ "yarn", "start"]

@@ -95,7 +95,7 @@ async function asyncMain() {
 
 
   const streams: pinoMultiStream.Streams = []
-  if(process.env.HOST_URL.startsWith('http://localhost')) {
+  if(process.env.NODE_ENV === 'development') {
     const prettyStream = pinoMultiStream.prettyStream()
     streams.push({stream: prettyStream})
   } else {
