@@ -52,4 +52,4 @@ services:
   mongo:
     image: mongo:4.2.3-bionic
     ports:
-      - 27018:27017
+      - 27019:27017

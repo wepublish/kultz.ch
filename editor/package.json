@@ -1,5 +1,5 @@
 {
-  "name": "@tsri/editor",
+  "name": "@kultz/editor",
   "private": true,
   "version": "0.0.0",
   "license": "UNLICENSED",
@@ -8,7 +8,7 @@
     "start": "wepublish-editor"
   },
   "dependencies": {
-    "@wepublish/editor": "^1.0.1-alpha.0",
+    "@wepublish/editor": "^2.0.0-alpha.1",
     "webpack": "^4.41.2"
   },
   "devDependencies": {

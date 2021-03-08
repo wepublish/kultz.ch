@@ -1,5 +1,5 @@
 {
-  "name": "@tsri/media",
+  "name": "@kultz/media",
   "private": true,
   "version": "0.0.0",
   "main": "./dist/",

@@ -1,5 +1,5 @@
 {
-  "name": "@tsri/api",
+  "name": "@kultz/api",
   "version": "0.0.0",
   "private": true,
   "main": "./dist/",
@@ -14,11 +14,10 @@
     "clean": "shx rm -rf ./dist"
   },
   "dependencies": {
-    "@wepublish/api": "^1.0.1-alpha.0",
-    "@wepublish/api-db-mongodb": "^1.0.1-alpha.0",
-    "@wepublish/api-media-karma": "^1.0.1-alpha.0",
+    "@wepublish/api": "^2.0.0-alpha.1",
+    "@wepublish/api-db-mongodb": "^2.0.0-alpha.1",
+    "@wepublish/api-media-karma": "^2.0.0-alpha.1",
     "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
     "commander": "^7.0.0",
     "html-dom-parser": "^1.0.0",
     "jsdom": "^16.4.0",

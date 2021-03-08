@@ -5,8 +5,6 @@ import {
   PublicArticle,
   PublicPage,
   Author,
-  Oauth2Provider,
-  MailgunMailProvider, StripePaymentProvider, PayrexxPaymentProvider
 } from '@wepublish/api'
 
 
@@ -15,8 +13,6 @@ import {URL} from 'url'
 import {MongoDBAdapter} from '@wepublish/api-db-mongodb/lib'
 
 import { program } from 'commander'
-import {importDjangoTsri} from './import'
-import bodyParser from 'body-parser'
 
 import pinoMultiStream from 'pino-multi-stream'
 import pinoStackdriver from 'pino-stackdriver'
@@ -26,7 +22,7 @@ interface TsriURLAdapterProps {
   readonly websiteURL: string
 }
 
-class TsriURLAdapter implements URLAdapter {
+class KultzURLAdapter implements URLAdapter {
 
   readonly websiteURL: string
 
@@ -35,7 +31,7 @@ class TsriURLAdapter implements URLAdapter {
   }
 
   getPublicArticleURL(article: PublicArticle): string {
-    return `${this.websiteURL}/zh/${article.id}/${article.slug}`
+    return `${this.websiteURL}/a/${article.id}/${article.slug}`
   }
 
   getPublicPageURL(page: PublicPage): string {
@@ -78,7 +74,7 @@ async function asyncMain() {
 
       await adapter.user.createUser({
         input: {
-          email: 'admin@tsri.ch',
+          email: 'admin@kultz.ch',
           name: 'Admin',
           roleIDs: [adminUserRoleId],
           active: true,
@@ -96,75 +92,6 @@ async function asyncMain() {
     url: process.env.MONGO_URL!,
     locale: process.env.MONGO_LOCALE ?? 'en'
   })
-
-  const oauth2Providers: Oauth2Provider[] = [
-    {
-      name: 'google',
-      discoverUrl: process.env.OAUTH_GOOGLE_DISCOVERY_URL ?? '',
-      clientId: process.env.OAUTH_GOOGLE_CLIENT_ID ?? '',
-      clientKey: process.env.OAUTH_GOOGLE_CLIENT_KEY ?? '',
-      redirectUri: [process.env.OAUTH_GOOGLE_REDIRECT_URL ?? ''],
-      scopes: ['openid profile email']
-    },
-    /* {
-      name: 'wepublish',
-      discoverUrl: process.env.OAUTH_WEPUBLISH_DISCOVERY_URL ?? '',
-      clientId: process.env.OAUTH_WEPUBLISH_CLIENT_ID ?? '',
-      clientKey: process.env.OAUTH_WEPUBLISH_CLIENT_KEY ?? '',
-      redirectUri: [process.env.OAUTH_WEPUBLISH_REDIRECT_URL ?? ''],
-      scopes: ['openid profile email']
-    } */
-  ]
-
-  if (!process.env.MAILGUN_API_KEY) throw new Error('No MAILGUN_API_KEY defined in environment.')
-  if (!process.env.MAILGUN_BASE_DOMAIN) throw new Error('No MAILGUN_BASE_DOMAIN defined in environment.')
-  if (!process.env.MAILGUN_MAIL_DOMAIN) throw new Error('No MAILGUN_MAIL_DOMAIN defined in environment.')
-  if (!process.env.MAILGUN_WEBHOOK_SECRET) throw new Error('No MAILGUN_WEBHOOK_SECRET defined in environment.')
-  const mailProvider = new MailgunMailProvider({
-    id: 'mailgun',
-    name: 'Mailgun',
-    fromAddress: 'info@tsri.ch',
-    webhookEndpointSecret: process.env.MAILGUN_WEBHOOK_SECRET,
-    baseDomain: process.env.MAILGUN_BASE_DOMAIN,
-    mailDomain: process.env.MAILGUN_MAIL_DOMAIN,
-    apiKey: process.env.MAILGUN_API_KEY,
-    incomingRequestHandler: bodyParser.json()
-  })
-
-  if (!process.env.STRIPE_SECRET_KEY) throw new Error('No STRIPE_SECRET_KEY defined in environment.')
-  if (!process.env.STRIPE_WEBHOOK_SECRET) throw new Error('No STRIPE_WEBHOOK_SECRET defined in environment.')
-  if (!process.env.PAYREXX_INSTANCE_NAME) throw new Error('No PAYREXX_INSTANCE_NAME defined in environment.')
-  if (!process.env.PAYREXX_API_SECRET) throw new Error('No PAYREXX_API_SECRET defined in environment.')
-  const paymentProviders = [
-    new StripePaymentProvider({
-      id: 'stripe',
-      name: 'Stripe',
-      offSessionPayments: true,
-      secretKey: process.env.STRIPE_SECRET_KEY,
-      webhookEndpointSecret: process.env.STRIPE_WEBHOOK_SECRET,
-      incomingRequestHandler: bodyParser.raw({type: 'application/json'})
-    }),
-    new PayrexxPaymentProvider({
-      id: 'payrexx',
-      name: 'Payrexx',
-      offSessionPayments: false,
-      instanceName: process.env.PAYREXX_INSTANCE_NAME,
-      instanceAPISecret: process.env.PAYREXX_API_SECRET,
-      psp: [0, 15, 17, 2, 3, 36],
-      pm: [
-        'postfinance_card',
-        'postfinance_efinance',
-        // "mastercard",
-        // "visa",
-        'twint',
-        // "invoice",
-        'paypal'
-      ],
-      vatRate: 7.7,
-      incomingRequestHandler: bodyParser.json()
-    })
-  ]
-
 
 
   const streams: pinoMultiStream.Streams = []
@@ -200,11 +127,11 @@ async function asyncMain() {
     websiteURL,
     mediaAdapter,
     dbAdapter,
-    paymentProviders,
-    mailProvider,
-    oauth2Providers,
+    paymentProviders: [],
+    mailProvider: undefined,
+    oauth2Providers: [],
     logger,
-    urlAdapter: new TsriURLAdapter({websiteURL}),
+    urlAdapter: new KultzURLAdapter({websiteURL}),
     playground: true,
     introspection: true,
     tracing: true
@@ -217,15 +144,6 @@ async function asyncMain() {
     .description('start the api server')
     .action(async () => {
       await server.listen(port, address)
-    })
-
-  program
-    .command('import')
-    .description('import')
-    .action(async () => {
-      console.log('importing data')
-      await importDjangoTsri(dbAdapter, mediaAdapter)
-      //process.exit(0)
     })
 
   program.parse(process.argv);
