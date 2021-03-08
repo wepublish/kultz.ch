@@ -10,11 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        name: checkout repository
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
       - name: Build docker
         env:
           PROJECT_ID: kultz-ch
           GCLOUD_AUTH: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KULTZ }}
         run: |
+          yarn install
+          yarn build
           # https://cloud.google.com/container-registry/docs/advanced-authentication
           printenv GCLOUD_AUTH | base64 --decode | docker login -u _json_key --password-stdin https://eu.gcr.io
           docker build --pull -t eu.gcr.io/${PROJECT_ID}/${GITHUB_REPOSITORY}/api:${GITHUB_SHA} ./api
