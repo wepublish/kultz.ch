@@ -589,6 +589,14 @@ async function applyApiServer() {
                       key: 'jwt_secret_key'
                     }
                   }
+                },{
+                  name: 'SENTRY_DSN',
+                  valueFrom: {
+                    secretKeyRef: {
+                      name: 'kultz-secrets',
+                      key: 'sentry_dsn'
+                    }
+                  }
                 },
                 {
                   name: 'SENTRY_ENV',
