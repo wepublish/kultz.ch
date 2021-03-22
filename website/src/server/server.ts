@@ -92,6 +92,10 @@ export async function asyncMain() {
     res.sendFile(path.resolve(__dirname, '../../static/robots.txt'))
   })
 
+  app.get('/mailchimp', async (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../static/html/mailchimp.html'))
+  })
+
   app.get('/*', async (req, res) => {
     const url = `${req.protocol}://${req.headers.host}${req.originalUrl}`
     let introspectionQueryResultData
