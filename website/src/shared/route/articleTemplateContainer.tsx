@@ -39,8 +39,8 @@ import {Color} from '../style/colors'
 import {RichTextBlock} from '../blocks/richTextBlock'
 
 const ArticleQuery = gql`
-  query Article($id: ID!) {
-    article(id: $id) {
+    query Article($id: ID, $slug: Slug, $token: String) {
+        article(id: $id, slug: $slug, token: $token) {
       ...ArticleMetaData
 
       blocks {
