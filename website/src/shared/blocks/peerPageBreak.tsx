@@ -7,7 +7,7 @@ import {cssRule, useStyle} from '@karma.run/react'
 import {Color} from '../style/colors'
 import {pxToRem, whenMobile} from '../style/helpers'
 import {Link} from '../route/routeContext'
-import {RichTextBlock} from '../blocks/richTextBlock/richTextBlock'
+import {RichTextBlock} from './richTextBlock'
 
 export const PeerPageBreakStyle = cssRule(isArticle => ({
   backgroundColor: Color.SecondaryLight,
@@ -112,14 +112,7 @@ export function PageBreakBlock({
         )}
       </div>
       {!!richText && (
-        <RichTextBlock
-          displayOnly
-          disabled
-          value={richText}
-          onChange={() => {
-            /* do nothing */
-          }}
-        />
+        <RichTextBlock value={richText} />
       )}
       <pre>layoutOption: {layoutOption || 'not set'}</pre>
       <pre>styleOption: {styleOption}</pre>

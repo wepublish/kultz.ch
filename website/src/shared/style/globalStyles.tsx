@@ -1,11 +1,32 @@
 import {ElementID} from '../elementID'
-import {useStaticStyle} from '@karma.run/react'
+import {useFont, useStaticStyle} from '@karma.run/react'
 
 export function GlobalStyles() {
   const staticCSS = useStaticStyle()
 
+  const font = useFont()
+
+  font('Noe Text',
+    ['/static/fonts/NoeText-Regular.woff', '/static/fonts/NoeText-Regular.woff2'],
+    {
+      fontWeight: 'normal'
+    })
+
+  font('Noe Text',
+    ['/static/fonts/NoeText-Bold.woff', '/static/fonts/NoeText-Bold.woff2'],
+    {
+      fontWeight: 'bold'
+    })
+
+  font('Noe Text',
+    ['/static/fonts/NoeText-RegularItalic.woff', '/static/fonts/NoeText-RegularItalic.woff2'],
+    {
+      fontWeight: 'normal',
+      fontStyle: 'italic'
+    })
+
   staticCSS('html', {
-    fontFamily: `Arial, sans-serif`,
+    fontFamily: `'Noe Text', Arial, sans-serif`,
     fontSize: '62.5%'
   })
 
