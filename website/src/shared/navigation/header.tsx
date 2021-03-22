@@ -38,7 +38,7 @@ const HeaderLogoStyle = cssRule(({isMinimized}: HeaderStyleProps) => ({
   justifyContent: 'center',
   zIndex: 1,
 
-  '> a > svg': {
+  '> a > img': {
     height: '5rem',
     transition: 'transform 200ms ease, fill 200ms ease'
   },
@@ -50,7 +50,7 @@ const HeaderLogoStyle = cssRule(({isMinimized}: HeaderStyleProps) => ({
   ...whenDesktop({
     order: 2,
 
-    '> a > svg': {
+    '> a > img': {
       height: '123px',
       transform: isMinimized ? 'translateY(50px) scale(0.25)' : 'translateY(25px)'
     }
