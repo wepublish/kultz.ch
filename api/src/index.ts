@@ -42,6 +42,10 @@ class KultzURLAdapter implements URLAdapter {
     return `${this.websiteURL}/author/${author.slug || author.id}`
   }
 
+  getArticlePreviewURL(token: string): string {
+    return `${this.websiteURL}/a/preview/${token}`
+  }
+
 }
 
 async function asyncMain() {

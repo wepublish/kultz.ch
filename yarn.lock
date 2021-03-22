@@ -2769,27 +2769,27 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@wepublish/api-db-mongodb@^2.0.0-alpha.1":
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@wepublish/api-db-mongodb/-/api-db-mongodb-2.0.0-alpha.1.tgz#8347a1fe1814bd9373a59e5932e77c5741670f1a"
-  integrity sha512-PJDMJifZ+ufcmIGLX9e5BJTd4R6SP1z+pb0na3cBWUMY4eJR5BQEQyL/wYeTwCtfPrKVorbDsHaXN9O4vKvXtQ==
+"@wepublish/api-db-mongodb@^2.1.0-alpha.0":
+  version "2.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@wepublish/api-db-mongodb/-/api-db-mongodb-2.1.0-alpha.0.tgz#f6cbd7a53c90f292299e19a2f01828f045d7ee21"
+  integrity sha512-SoQ0Emx56g+5ej3p6XhH0/Q/eWkN0giQrIllx9KRhAfBiasUW8T8Iq5zM9i+j+0tNytLbQUhQ2eBmjH+zWeVqQ==
   dependencies:
     bcrypt "^5.0.0"
     mongodb "^3.5.4"
     nanoid "^2.1.11"
 
-"@wepublish/api-media-karma@^2.0.0-alpha.1":
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@wepublish/api-media-karma/-/api-media-karma-2.0.0-alpha.1.tgz#f3d4d53e4f7a56c7272f6a7747c297e3503aa441"
-  integrity sha512-ZmNgOk7nYe0cRgHCu/wfYZmLnBpj9yw/2puexd/1a9U7H5LNgOAi0nQqG+Lta+JTeaITwfjiWn++Gk3TdcW17A==
+"@wepublish/api-media-karma@^2.1.0-alpha.0":
+  version "2.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@wepublish/api-media-karma/-/api-media-karma-2.1.0-alpha.0.tgz#d0c5dac4721858a54ba27bdd78ad609f5195b590"
+  integrity sha512-K05UGnR0o0ntq/1JTn4htmP9z/Oc5tJMIEmHISz3DtPHdY2fPNQDZpVph61zAi883BwIf4d4otC7JnCqSP6wVw==
   dependencies:
     form-data "^3.0.0"
     node-fetch "^2.6.0"
 
-"@wepublish/api@^2.0.0-alpha.1":
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@wepublish/api/-/api-2.0.0-alpha.1.tgz#2e0bca0cccf25d64887727e2699d3c3c81c785d3"
-  integrity sha512-eP6XsEP5WxXZCxiXhl8MgsFo0a7Y0NZsHssZdKSuKx1AR/S8DG3Dwn79PwOvISNsolpIRlJVOCEbbK5Lhf45dg==
+"@wepublish/api@^2.1.0-alpha.0":
+  version "2.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@wepublish/api/-/api-2.1.0-alpha.0.tgz#5990cd5bea472d9495b48ba59b2af6662c279b7b"
+  integrity sha512-hE2PgK/05q++Bi1aJ/75MUnubjF9psLQ8X7RTd5IGotFKeLW/umiFi9ukw/3dxsxJJWYF7PARlHXYRTRApzX6Q==
   dependencies:
     "@karma.run/utility" "^0.1.0"
     abort-controller "^3.0.0"
@@ -2814,10 +2814,10 @@
     qs "^6.9.1"
     stripe "^8.126.0"
 
-"@wepublish/editor@^2.0.0-alpha.1":
-  version "2.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@wepublish/editor/-/editor-2.0.0-alpha.1.tgz#8f321bc0b34038ec5fac2747a73d1dc344380305"
-  integrity sha512-TRyIo4GeUrr/PkvS2FSTtLIvDM5UtaXNDzO30qMzjPlhzi7ZjqSUbqBlcdfbh03rsWP3+S4Jf7Lnuj52Vif6kA==
+"@wepublish/editor@^2.1.0-alpha.0":
+  version "2.1.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@wepublish/editor/-/editor-2.1.0-alpha.0.tgz#c4eee13c33eb168570625a2777011cf2ec522e4e"
+  integrity sha512-t/AooUQq/2DLfZ2+TVdsNwD7dK603eTMK/k4wqgXkJrU6/wKiGi2Tx+cCQd2LY+IjEGlrkbwZDwhjlzD1QdJ0w==
   dependencies:
     "@apollo/client" "^3.2.1"
     "@karma.run/react" "^0.1.3"
