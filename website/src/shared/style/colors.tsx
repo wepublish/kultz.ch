@@ -6,13 +6,13 @@ export enum Color {
   NeutralDark = '#202020',
   NeutralLight = '#F8F8F8',
 
-  Primary = '#FC6969',
+  Primary = '#00AF00',
   PrimaryDark = '#c4363e',
   PrimaryLight = '#ff9b97',
 
-  Secondary = '#6fda8c',
-  SecondaryDark = '#39a85e',
-  SecondaryLight = '#a3ffbd',
+  Secondary = '#00AF00',
+  SecondaryDark = '#00AF00',
+  SecondaryLight = '#00AF00',
 
   Highlight = '#FF0D63',
 

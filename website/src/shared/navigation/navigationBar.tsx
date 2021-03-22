@@ -276,14 +276,6 @@ export function NavigationBar({itemsCategory, itemsIntern}: NavigationBarProps) 
         )}
         <NavigationBarDivider />
         <div className={css(NavigationInnerBlockStyle)}>
-          <div
-            onClick={e => {
-              onCollapse(true)
-            }}>
-            <Link className={css(LinkStyles, SmallLinkStyles)} href="https://wepublish.media">
-              WePublish
-            </Link>
-          </div>
 
           {itemsIntern.map((item, index) => (
             <div key={index}>
@@ -300,13 +292,13 @@ export function NavigationBar({itemsCategory, itemsIntern}: NavigationBarProps) 
         </div>
         <NavigationBarDivider />
         <div className={css(NavigationSocialMediaStyle, NavigationInnerBlockStyle)}>
-          <Link target="_blank" rel="noopener" href="https://www.facebook.com/wepublish">
+          <Link target="_blank" rel="noopener" href="https://www.facebook.com/therealkultz">
             <RoundIconButton icon={IconType.Facebook}></RoundIconButton>
           </Link>
-          <Link target="_blank" rel="noopener" href="https://twitter.com/wepublish">
+          <Link target="_blank" rel="noopener" href="https://twitter.com/kultzc">
             <RoundIconButton icon={IconType.Twitter}></RoundIconButton>
           </Link>
-          <Link href="mailto:info@wepublish.ch">
+          <Link href="mailto:redaktion@kultz.ch">
             <RoundIconButton icon={IconType.Mail}></RoundIconButton>
           </Link>
         </div>
@@ -317,11 +309,12 @@ export function NavigationBar({itemsCategory, itemsIntern}: NavigationBarProps) 
           </div>
           <div className={css(NavFooterWrapperStyle)}>
             <Link className={css(LinkStyles)} route={PageRoute.create({})}>
-              <strong>wepublish.media</strong>
+              <strong>Kultz</strong>
             </Link>
-            <div>Teststrasse 26</div>
-            <div>8000 Zürich</div>
-            <Link href="mailto:info@wepublish.ch">info@wepublish.ch</Link>
+            <div>Verein «Der Verleg»</div>
+            <div>Zentralstrasse 30</div>
+            <div>6003 Luzern</div>
+            <Link href="mailto:redaktion@kultz.ch">redaktion@kultz.ch</Link>
           </div>
         </div>
       </div>
