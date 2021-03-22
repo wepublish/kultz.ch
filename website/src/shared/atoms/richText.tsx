@@ -29,73 +29,60 @@ export function renderNodes(nodes: Node[]): ReactNode {
   return nodes.map((node, index) => {
     const css = useStyle()
     if (node.children) {
+      const children = node.children as Node[]
       switch (node.type) {
         case 'heading-one':
-          // @ts-ignore
-          return <h1 key={index}>{renderNodes(node.children)}</h1>
+          return <h1 key={index}>{renderNodes(children)}</h1>
         case 'heading-two':
-          // @ts-ignore
-          return <h2 key={index}>{renderNodes(node.children)}</h2>
+          return <h2 key={index}>{renderNodes(children)}</h2>
         case 'heading-three':
-          // @ts-ignore
-          return <h3 key={index}>{renderNodes(node.children)}</h3>
+          return <h3 key={index}>{renderNodes(children)}</h3>
         case 'unordered-list':
-          // @ts-ignore
-          return <ul key={index}>{renderNodes(node.children)}</ul>
+          return <ul key={index}>{renderNodes(children)}</ul>
         case 'ordered-list':
-          // @ts-ignore
-          return <ol key={index}>{renderNodes(node.children)}</ol>
+          return <ol key={index}>{renderNodes(children)}</ol>
         case 'list-item':
-          // @ts-ignore
-          return <li key={index}>{renderNodes(node.children)}</li>
+          return <li key={index}>{renderNodes(children)}</li>
         case 'table':
-          // @ts-ignore
           return (
             <div key={index} style={{maxWidth: '100%', overflowX: 'auto'}}>
               <table className={css(tableStyle)} style={{display: 'block'}}>
-                <tbody>{renderNodes(node.children)}</tbody>
+                <tbody>{renderNodes(children)}</tbody>
               </table>
             </div>
           )
         case 'table-row':
-          // @ts-ignore
-          return <tr key={index}>{renderNodes(node.children)}</tr>
+          return <tr key={index}>{renderNodes(children)}</tr>
         case 'table-cell':
-          // @ts-ignore
           return (
-            <td key={index} className={css(tableCellStyle)} style={{borderColor: node.borderColor}}>
-              {renderNodes(node.children)}
+            <td key={index} className={css(tableCellStyle)} style={{borderColor: (node.borderColor as string)}}>
+              {renderNodes(children)}
             </td>
           )
         case 'link':
           if (
             node.url &&
-            (node.url.includes('mailto:') ||
-              node.url.startsWith('https://bajour') ||
-              node.url.startsWith('https://staging.bajour') ||
-              node.url.startsWith('/'))
+            (node.url as string).includes('mailto:') ||
+              (node.url as string).startsWith('https://kultz') ||
+              (node.url as string).startsWith('/')
           ) {
-            // @ts-ignore
             return (
-              <a key={index} href={node.url} title={node.title}>
-                {renderNodes(node.children)}
+              <a key={index} href={node.url as string} title={node.title as string}>
+                {renderNodes(children)}
               </a>
             )
           } else {
-            // @ts-ignore
             return (
-              <a key={index} target="_blank" rel="noopener" href={node.url} title={node.title}>
-                {renderNodes(node.children)}
+              <a key={index} target="_blank" rel="noopener" href={node.url as string} title={node.title as string}>
+                {renderNodes(children)}
               </a>
             )
           }
         default:
-          // @ts-ignore
-          return <p key={index}>{renderNodes(node.children)}</p>
+          return <p key={index}>{renderNodes(children)}</p>
       }
     } else {
-      // @ts-ignore
-      const splitText: string[] = node.text.split('\n')
+      const splitText: string[] = (node.text as string).split('\n')
 
       let element = (
         <>
