@@ -118,7 +118,7 @@ export function PageTemplateContainer({slug, id}: PageTemplateContainerProps) {
   return (
     <>
       <Helmet>
-        <title>Wepublish | {title}</title>
+        <title>Kultz | {title}</title>
         {description && <meta name="description" content={description} />}
         <link rel="canonical" href={canonicalURL} />
         <meta property="og:title" content={socialMediaTitle ?? title} />
