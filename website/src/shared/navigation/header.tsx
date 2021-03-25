@@ -22,7 +22,7 @@ const HeaderStyle = cssRule(({isMinimized}: HeaderStyleProps) => ({
   backgroundColor: Color.White,
   boxShadow: isMinimized ? 'none' : `0 0 25px rgba(${hexToRgb(Color.Primary)}, 0.6)`,
   borderBottom: isMinimized ? `1px solid ${Color.Secondary}` : 'none',
-  textTransform: 'uppercase',
+  // textTransform: 'uppercase',
   fontSize: '14px',
 
   // '@media print': {
@@ -65,7 +65,7 @@ const HeaderLogoStyle = cssRule(({isMinimized}: HeaderStyleProps) => ({
 
     '> a > img': {
       height: '123px',
-      transform: isMinimized ? 'translateY(50px) scale(0.25)' : 'translateY(25px)'
+      transform: isMinimized ? 'translateY(50px) scale(0.25)' : 'translateY(0)'
     }
   })
 }))
