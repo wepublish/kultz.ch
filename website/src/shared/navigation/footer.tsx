@@ -164,7 +164,7 @@ export function Footer({text, navigation, onNewsletter}: FooterProps) {
             <Link href="mailto:redaktion@kultz.ch">redaktion@kultz.ch</Link>
           </p>
         </div>
-        <p className={css(FooterTextStyle)}>{text}</p>
+        <p className={css(FooterTextStyle)}><Link href="/member-werden">Danke, dass Du uns liest. Member werden!</Link></p>
         <div className={css(FooterShareStyle)}>
           <Link target="_blank" rel="noopener" href="https://www.facebook.com/therealkultz">
             <RoundIconButton icon={IconType.Facebook}></RoundIconButton>
