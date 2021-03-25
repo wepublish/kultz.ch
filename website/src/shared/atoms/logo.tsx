@@ -3,7 +3,7 @@ import {useStyle, cssRule} from '@karma.run/react'
 
 export const LogoStyle = cssRule({
   display: 'block',
-  height: '9em'
+  //height: '9em'
 })
 
 export const SmallLogoStyle = cssRule({
