@@ -100,7 +100,6 @@ const CategoriesStyle = cssRule({
   fontSize: pxToRem(24),
   paddingBottom: pxToRem(10),
   letterSpacing: '0.1rem',
-  textTransform: 'uppercase'
 })
 
 const NavigationBackgroundStyle = cssRule<NavigationBarStyleProps>(({isCollapsed}) => ({
