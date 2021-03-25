@@ -295,6 +295,9 @@ export function NavigationBar({itemsCategory, itemsIntern}: NavigationBarProps) 
           <Link target="_blank" rel="noopener" href="https://www.facebook.com/therealkultz">
             <RoundIconButton icon={IconType.Facebook}></RoundIconButton>
           </Link>
+          <Link target="_blank" rel="noopener" href="https://www.instagram.com/kultz.ch/">
+            <RoundIconButton icon={IconType.Instagram}></RoundIconButton>
+          </Link>
           <Link target="_blank" rel="noopener" href="https://twitter.com/kultzc">
             <RoundIconButton icon={IconType.Twitter}></RoundIconButton>
           </Link>
