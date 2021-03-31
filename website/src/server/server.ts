@@ -109,6 +109,26 @@ export async function asyncMain() {
       console.warn('Fetch Introspect Error', err)
     }
 
+    const oldLinks = [
+      {
+        old: '/articles/liebeserklaerung/liebeserklaerung.html',
+        new: '/a/yZLH6jLP1KswKpx3/martin-erdmann-vermisst-die-beizen'
+      },
+      {
+        old: '/articles/tellrezension/tellrezension.html',
+        new: 'a/0UC78g1gKpBKPwh8/luzerner-theater-jana-avanzini-rezensiert-wilhelm-tell'
+      },
+      {
+        old: '/articles/10fragenbart/10fragenbart.html',
+        new: 'a/t5EGejefjW6hzOMM/jonas-wydler-befragt-fs-bart'
+      },
+    ]
+    const found = oldLinks.find((link => link.old === req.originalUrl))
+
+    if (found) {
+      return res.redirect(301, `${req.protocol}://${req.headers.host}${found.new}`)
+    }
+
     const initialRoute = matchRoute(url)
 
     const {markup, error} = await renderMarkup({
