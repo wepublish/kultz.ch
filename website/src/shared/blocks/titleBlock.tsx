@@ -48,7 +48,6 @@ const PreTitleStyle = cssRule({
 })
 
 const TitleStyle = cssRule({
-  fontWeight: 'normal',
   fontSize: pxToRem(30),
   marginTop: 0,
   marginBottom: '3rem',

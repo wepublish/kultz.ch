@@ -6,7 +6,6 @@ import {pxToRem} from '../style/helpers'
 const PageHeaderStyle = cssRule({
   backgroundColor: Color.SecondaryLight,
   height: pxToRem(110),
-  textTransform: 'uppercase',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

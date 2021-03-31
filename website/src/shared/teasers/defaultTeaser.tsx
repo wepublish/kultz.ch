@@ -83,7 +83,7 @@ const DefaultTeaserImageSingleStyle = cssRule({
 })
 
 export const DefaultTeaserTitleStyle = cssRule({
-  fontWeight: 300,
+  fontWeight: 'bold',
   textAlign: 'center',
   fontSize: pxToRem(30),
   margin: `0 auto ${pxToRem(25)}`

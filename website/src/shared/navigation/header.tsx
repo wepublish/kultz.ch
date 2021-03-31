@@ -71,6 +71,7 @@ const HeaderLogoStyle = cssRule(({isMinimized}: HeaderStyleProps) => ({
 }))
 
 const HeaderStartNavigation = cssRule(() => ({
+  fontWeight: 'bold',
   ...whenDesktop({
     order: 1,
     justifyContent: 'flex-end',
@@ -91,10 +92,12 @@ const HeaderStartNavigation = cssRule(() => ({
 }))
 
 const HeaderEndNavigation = cssRule(() => ({
+  height: '50px',
+  paddingTop: '15px',
   ...whenDesktop({
     order: 3,
     justifyContent: 'flex-start',
-    paddingLeft: '25px',
+    paddingLeft: '100px',
     borderTopColor: 'transparent'
   })
 }))
@@ -164,7 +167,8 @@ export function Header({navigationItems, isMinimized}: HeaderProps) {
         <Link href="/brief">Kultz-Brief</Link>
       </div>
       <div className={css(HeaderNavigationStyles, HeaderEndNavigation)}>
-        <Link href="/">&nbsp;</Link>
+        <Link href="/tag/Kultur">Nur Kultur</Link>
+        <Link href="/tag/Satire">Nur Satire</Link>
       </div>
     </nav>
   )
