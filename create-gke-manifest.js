@@ -12,7 +12,7 @@ if (GITHUB_REF === 'refs/heads/main' || GITHUB_REF === 'main') {
 }
 const NAMESPACE = envSwitch(ENVIRONMENT_NAME,'kultz', 'kultz-dev')
 
-const domain = 'new.kultz.ch' // TODO: configure this
+const domain = 'kultz.ch' // TODO: configure this
 const devDomain = 'new.kultz.dev'
 const domainCn = envSwitch(ENVIRONMENT_NAME, `${domain}`, `${devDomain}`)
 const domainSan = envSwitch(
