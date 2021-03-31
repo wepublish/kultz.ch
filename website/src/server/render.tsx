@@ -139,6 +139,14 @@ export async function renderMarkup(opts: RenderOptions) {
 
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-467J5H83TK"></script>
 
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-467J5H83TK');
+            </script>
+
             <script async src={`${staticHost}/${clientEntryFile}`} />
 
             <script
