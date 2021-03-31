@@ -137,6 +137,8 @@ export async function renderMarkup(opts: RenderOptions) {
 
             {scriptElements}
 
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-467J5H83TK"></script>
+
             <script async src={`${staticHost}/${clientEntryFile}`} />
 
             <script
