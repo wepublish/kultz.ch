@@ -23,7 +23,15 @@ import {
 import {fetch} from 'cross-fetch'
 import {setContext} from '@apollo/client/link/context'
 
+import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react'
+
+const instance = createInstance({
+  urlBase: 'https://matomo.gifstr.io',
+  siteId: 3
+})
+
 export const HotApp = hot(App)
+
 
 export async function hydrateApp(): Promise<void> {
   return new Promise(resolve => {
@@ -59,14 +67,16 @@ export async function hydrateApp(): Promise<void> {
                 <FacebookProvider sdkLanguage={'de_DE'}>
                   <InstagramProvider>
                     <TwitterProvider>
-                      <RouteProvider
-                        initialRoute={matchRoute(location.href)}
-                        handleNextRoute={(route, dispatch) => {
-                          dispatch({type: RouteActionType.SetCurrentRoute, route})
-                          return () => {}
-                        }}>
-                        <HotApp />
-                      </RouteProvider>
+                      <MatomoProvider value={instance}>
+                        <RouteProvider
+                          initialRoute={matchRoute(location.href)}
+                          handleNextRoute={(route, dispatch) => {
+                            dispatch({type: RouteActionType.SetCurrentRoute, route})
+                            return () => {}
+                          }}>
+                          <HotApp />
+                        </RouteProvider>
+                      </MatomoProvider>
                     </TwitterProvider>
                   </InstagramProvider>
                 </FacebookProvider>

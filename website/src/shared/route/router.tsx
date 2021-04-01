@@ -7,9 +7,20 @@ import {BaseTemplateContainer, BaseTemplateContainerProps} from './baseTemplateC
 import {PageTemplateContainer} from './pageTemplateContainer'
 import {AuthorTemplateContainer} from './authorTemplateContainer'
 import {TagTemplateContainer} from './tagTemplateContainer'
+import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 export function Router() {
   const {current} = useRoute()
+
+  const { trackPageView} = useMatomo()
+
+  // Track page view
+  React.useEffect(() => {
+    trackPageView({
+      href: window.location.href
+    })
+  }, [])
+
 
   // Disable `scrollRestoration`.
   useEffect(() => {
