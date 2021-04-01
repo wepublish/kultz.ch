@@ -163,7 +163,11 @@ export async function asyncMain() {
       {old:'/old/ignoranz-nahkampf.html', new: '/a/wJ6797gPEkfg71g5/unterwegs-mit-den-verschworungstheoretikern'},
       {old:'/old/livestreams.html', new: '/a/KONU4us0piaXnaIq/corona-und-uberflussige-livestreams'},
       {old:'/old/kulturwelten.html', new: '/a/YyHaSvvtaRAPVtoB/kulturbegriff-zentralschweiz-kultur-was-heisst-das-eigentlich'},
-      {old:'/old/einsamkeit.html', new: '/a/BxSeITMAc2Nxp9Ch/die-einsamkeit-des-rezensenten'}
+      {old:'/old/einsamkeit.html', new: '/a/BxSeITMAc2Nxp9Ch/die-einsamkeit-des-rezensenten'},
+      {old:'/articles/dialektwoerterbuch/dialektwoerterbuch.html', new: '/a/GzY3gjD2U2tk7lpw/obwaldner-mundartworterbuch-von-karl-imfeld'},
+      {old:'/articles/guidograf/guidograf.html', new: '/a/yOyu5PDa6aP3IYeH/zitate-interview-mit-guido-graf'},
+      {old:'/articles/mythen/mythen.html', new: '/a/3mY0XR2vHq1q8Rwb/neue-studie-berge-in-schwyz-nur-mythen'},
+      {old:'/articles/haexnoergeligaex/haexnoergeligaex.html', new: '/a/3x99T8zgj1ZdmtOq/schliessung-verhindert-hax-norgeligax-ubernimmt-geburtenabteilung-im-spital-sarn'}
     ]
     const found = oldLinks.find((link => link.old === req.originalUrl))
 
