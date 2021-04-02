@@ -108,7 +108,7 @@ async function applyWebsite() {
   let hosts = [domainCn]
   if (domainSan) {
     const domains = domainSan.split(',')
-    rules = rules.concat(domains.map(domain => getRule(domain)))
+    // rules = rules.concat(domains.map(domain => getRule(domain)))
     hosts = hosts.concat(domains)
   }
 
@@ -124,6 +124,7 @@ async function applyWebsite() {
       },
       annotations: {
         'kubernetes.io/ingress.class': 'nginx',
+        'nginx.ingress.kubernetes.io/from-to-www-redirect': 'true',
         'nginx.ingress.kubernetes.io/ssl-redirect': 'true',
         'nginx.ingress.kubernetes.io/proxy-body-size': '1m',
         'nginx.ingress.kubernetes.io/proxy-read-timeout': '30',
