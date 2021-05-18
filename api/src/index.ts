@@ -4,7 +4,7 @@ import {
   URLAdapter,
   PublicArticle,
   PublicPage,
-  Author,
+  Author, PublicComment
 } from '@wepublish/api'
 
 
@@ -18,7 +18,7 @@ import pinoMultiStream from 'pino-multi-stream'
 import pinoStackdriver from 'pino-stackdriver'
 import {createWriteStream} from 'pino-sentry'
 
-interface TsriURLAdapterProps {
+interface KultzURLAdapterProps {
   readonly websiteURL: string
 }
 
@@ -26,7 +26,7 @@ class KultzURLAdapter implements URLAdapter {
 
   readonly websiteURL: string
 
-  constructor(props: TsriURLAdapterProps) {
+  constructor(props: KultzURLAdapterProps) {
     this.websiteURL = props.websiteURL
   }
 
@@ -44,6 +44,10 @@ class KultzURLAdapter implements URLAdapter {
 
   getArticlePreviewURL(token: string): string {
     return `${this.websiteURL}/a/preview/${token}`
+  }
+
+  getCommentURL(item: PublicArticle | PublicPage, comment: PublicComment): string {
+    return ''
   }
 
 }
