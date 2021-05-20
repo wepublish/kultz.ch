@@ -39,14 +39,20 @@ const ImageStyle = cssRule({
   }
 })
 
+const ImageBlockCaptionStyle = cssRule({
+  padding: `0 ${pxToRem(25)}`
+})
+
 export interface TitleImageBlockProps {
   readonly image?: ImageData
   readonly imageRef?: ImageRefData
   readonly width: number
   readonly height: number
+  readonly author?: string
+  readonly caption?: string
 }
 
-export function TitleImageBlock({image, imageRef, width, height}: TitleImageBlockProps) {
+export function TitleImageBlock({image, imageRef, width, height, author, caption}: TitleImageBlockProps) {
   const ref = React.createRef<HTMLDivElement>()
   const show = usePermanentVisibility(ref, {threshold: 0})
   const css = useStyle({showBackground: show})
@@ -71,6 +77,11 @@ export function TitleImageBlock({image, imageRef, width, height}: TitleImageBloc
             height={height}
             alt={imageRef.description || imageRef.title}
           />
+        )}
+        {(author || caption) && (
+          <p className={css(ImageBlockCaptionStyle)}>
+            {caption} {author ? <>(Foto: {author})</> : null}
+          </p>
         )}
       </div>
     </div>

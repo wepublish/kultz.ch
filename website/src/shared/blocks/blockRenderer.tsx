@@ -90,7 +90,13 @@ export function renderBlock(block: Block | null, opts: RenderBlockOptions) {
       )
 
     case BlockType.TitleImage:
-      return <TitleImageBlock image={block.value} width={1280} height={680} />
+      return <TitleImageBlock
+        image={block.value}
+        width={1280}
+        height={680}
+        caption={block.value.caption}
+        author={block.value.author}
+      />
 
     case BlockType.Teaser:
       return renderTeaser(block.key, block.value)
