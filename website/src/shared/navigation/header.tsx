@@ -92,6 +92,7 @@ const HeaderStartNavigation = cssRule(() => ({
 }))
 
 const HeaderEndNavigation = cssRule(() => ({
+  fontWeight: 'bold',
   height: '50px',
   paddingTop: '15px',
   ...whenDesktop({
