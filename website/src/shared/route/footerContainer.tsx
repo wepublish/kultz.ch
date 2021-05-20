@@ -10,6 +10,7 @@ export interface ArticleFooterContainerProps {
   readonly authors?: Author[]
   readonly peer?: Peer
   readonly publishDate: Date
+  readonly updatedAt?: Date
   readonly id: string
   readonly comments?: Comment[]
   isPeerArticle?: boolean
@@ -21,6 +22,7 @@ export function ArticleFooterContainer({
   comments,
   peer,
   publishDate,
+  updatedAt,
   id,
   isPeerArticle
 }: ArticleFooterContainerProps) {
@@ -46,6 +48,8 @@ export function ArticleFooterContainer({
         authors={authors}
         itemID={id}
         comments={comments}
+        publishedAt={publishDate}
+        updatedAt={updatedAt}
       />
     )
   }
@@ -66,6 +70,8 @@ export function ArticleFooterContainer({
       isPeerArticle={isPeerArticle}
       comments={comments}
       itemID={id}
+      publishedAt={publishDate}
+      updatedAt={updatedAt}
     />
   )
 }

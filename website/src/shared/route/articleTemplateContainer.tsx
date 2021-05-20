@@ -169,6 +169,7 @@ export function ArticleTemplateContainer({id, slug}: ArticleTemplateContainerPro
         tags={tags}
         authors={authors}
         publishDate={publishedAt}
+        updatedAt={updatedAt}
         id={id}
         comments={comments}
       />

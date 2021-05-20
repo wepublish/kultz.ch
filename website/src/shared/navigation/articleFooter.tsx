@@ -12,6 +12,7 @@ import {RoundImage} from '../atoms/roundImage'
 import {pxToRem, whenTablet, whenDesktop} from '../style/helpers'
 import {GridBlock} from '../blocks/gridBlock'
 import {usePermanentVisibility} from '../utils/hooks'
+import {getHumanReadableTimePassed} from '../utility'
 
 const ArticleFooterStyle = cssRule<{showBackground: boolean}>(({showBackground}) => ({
   opacity: showBackground ? 1 : 0,
@@ -87,6 +88,23 @@ const CommentoStyle = cssRule<{showBackground: boolean}>(({showBackground}) => (
 
 }))
 
+const UpdatedAtContainer = cssRule({
+  textAlign: 'center'
+})
+const AuthorContainerStyle = cssRule({
+  color: Color.PrimaryLight,
+  fontSize: pxToRem(14),
+
+  '> a': {
+    textDecoration: 'underline',
+    transition: 'color 200ms ease',
+
+    '&:hover': {
+      color: Color.Black
+    }
+  }
+})
+
 export interface ArticleFooterProps {
   readonly relatedArticles: ArticleMeta[]
   readonly itemID: string
@@ -95,6 +113,8 @@ export interface ArticleFooterProps {
   readonly comments?: Comment[]
   readonly peer?: Peer
   readonly showImage?: boolean
+  readonly publishedAt: Date
+  readonly updatedAt?: Date
   isPeerArticle?: boolean
 }
 
@@ -127,9 +147,18 @@ export function ArticleFooter(props: ArticleFooterProps) {
     }
   },['commento-script'])
 
+  const showUpdatedAt = props.publishedAt?.getTime() !== props.updatedAt?.getTime()
+
   return (
     <div>
       <div ref={ref} className={css(ArticleFooterStyle)}>
+        {showUpdatedAt && props.updatedAt ? (
+          <div className={css(UpdatedAtContainer)}>
+            <p className={css(AuthorContainerStyle)}>
+              Aktualisiert {getHumanReadableTimePassed(props.updatedAt)}
+            </p>
+          </div>
+        ): ('')}
         {hasTags ? (
           <div className={css(TagListStyle)}>
             <TagList peer={props.peer} tags={props.tags} />

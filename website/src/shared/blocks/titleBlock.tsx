@@ -128,8 +128,6 @@ export function TitleBlockDefault({
   const show = usePermanentVisibility(ref, {threshold: 0})
   const css = useStyle({showBackground: show})
 
-  const showUpdatedAt = publishedAt?.getTime() != updatedAt?.getTime()
-
   return (
     <div ref={ref} className={css(TitleBlockStyle)}>
       <div className={css(TitleInnerBlockStyle)}>
@@ -161,9 +159,6 @@ export function TitleBlockDefault({
             </>
           )}
           {publishedAt && getHumanReadableTimePassed(publishedAt)}
-        </p>
-        <p className={css(AuthorContainerStyle)}>
-          {showUpdatedAt && updatedAt && <>Aktualisiert {getHumanReadableTimePassed(updatedAt)}</>}
         </p>
       </div>
 
