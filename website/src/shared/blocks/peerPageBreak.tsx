@@ -102,23 +102,9 @@ export function PageBreakBlock({
           </Link>
         )}
       </div>
-      <div style={{width: '300px'}}>
-        {!!image && !!image?.id && (
-          <Image
-            width={300}
-            height={300}
-            src={image && image.smallTeaserURL ? image.smallTeaserURL : undefined}
-          />
-        )}
-      </div>
       {!!richText && (
         <RichTextBlock value={richText} />
       )}
-      <pre>layoutOption: {layoutOption || 'not set'}</pre>
-      <pre>styleOption: {styleOption}</pre>
-      <pre>templateOption: {templateOption}</pre>
-      <pre>hideButton: {hideButton}</pre>
-      <pre>linkTarget: {linkTarget}</pre>
     </div>
   )
 }
