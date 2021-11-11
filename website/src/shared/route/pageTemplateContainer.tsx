@@ -33,8 +33,8 @@ import {PageRoute} from './routeContext'
 // import { PageFooterContainer } from './footerContainer'
 
 const PageQuery = gql`
-  query Page($id: ID, $slug: Slug) {
-    page(id: $id, slug: $slug) {
+  query Page($id: ID, $slug: Slug, $token: String) {
+    page(id: $id, slug: $slug, token: $token) {
       updatedAt
       publishedAt
       slug
@@ -91,11 +91,13 @@ const PageQuery = gql`
 export interface PageTemplateContainerProps {
   slug?: string
   id?: string
+  token?: string
 }
 
-export function PageTemplateContainer({slug, id}: PageTemplateContainerProps) {
+export function PageTemplateContainer({slug, id, token}: PageTemplateContainerProps) {
   const {canonicalHost} = useAppContext()
-  const {data, loading, error} = useQuery(PageQuery, {variables: {slug, id}})
+  if (!token) token = slug
+  const {data, loading, error} = useQuery(PageQuery, {variables: {slug, id, token}})
 
   if (loading) return <Loader text="Loading" />
 

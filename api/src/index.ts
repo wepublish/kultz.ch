@@ -4,7 +4,7 @@ import {
   URLAdapter,
   PublicArticle,
   PublicPage,
-  Author, PublicComment
+  Author, PublicComment, Peer
 } from '@wepublish/api'
 
 
@@ -34,6 +34,10 @@ class KultzURLAdapter implements URLAdapter {
     return `${this.websiteURL}/a/${article.id}/${article.slug}`
   }
 
+  getPeeredArticleURL(peer: Peer, article: PublicArticle): string {
+    return `${this.websiteURL}/p/${peer.id}/${article.id}`
+  }
+
   getPublicPageURL(page: PublicPage): string {
     return `${this.websiteURL}/${page.slug}.${page.id}`
   }
@@ -44,6 +48,10 @@ class KultzURLAdapter implements URLAdapter {
 
   getArticlePreviewURL(token: string): string {
     return `${this.websiteURL}/a/preview/${token}`
+  }
+
+  getPagePreviewURL(token: string): string {
+    return `${this.websiteURL}/${token}`
   }
 
   getCommentURL(item: PublicArticle | PublicPage, comment: PublicComment): string {
@@ -86,6 +94,7 @@ async function asyncMain() {
           name: 'Admin',
           roleIDs: [adminUserRoleId],
           active: true,
+          emailVerifiedAt: null,
           properties: []
         },
         password: '1234qwer.'
@@ -137,6 +146,10 @@ async function asyncMain() {
     dbAdapter,
     paymentProviders: [],
     mailProvider: undefined,
+    mailContextOptions: {
+      mailTemplateMaps: [],
+      defaultFromAddress: 'info@kultz.ch'
+    },
     oauth2Providers: [],
     logger,
     urlAdapter: new KultzURLAdapter({websiteURL}),
