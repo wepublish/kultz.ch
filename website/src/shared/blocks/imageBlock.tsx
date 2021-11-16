@@ -42,7 +42,6 @@ export function ImageBlock(props: ImageBlockProps) {
   const show = usePermanentVisibility(ref, {threshold: 0})
   const css = useStyle({showBackground: show})
 
-  console.log(props)
   return (
     <div ref={ref} className={css(ImageBlockStyle)}>
       <RatioImage
