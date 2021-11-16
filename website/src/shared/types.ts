@@ -16,7 +16,7 @@ export interface ImageData {
   author?: string
   focusPoint?: {x: number; y: number}
   format: string
-
+  source?: string
   ogURL: string
   smallTeaserURL: string
   mediumTeaserURL: string

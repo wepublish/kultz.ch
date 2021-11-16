@@ -86,6 +86,7 @@ export function renderBlock(block: Block | null, opts: RenderBlockOptions) {
           description={block.value.description}
           caption={block.value.caption}
           author={block.value.author}
+          source={block.value.source}
         />
       )
 
