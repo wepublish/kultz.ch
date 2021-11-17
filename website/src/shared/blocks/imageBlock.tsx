@@ -55,7 +55,8 @@ export function ImageBlock(props: ImageBlockProps) {
         <p className={css(ImageBlockCaptionStyle)}>
           {props.caption}
           <span style={{fontStyle: 'italic', fontSize: 'smaller', color: 'gray'}}>
-          {props.author ? <> (Bild: <a target="_blank" referrerPolicy="no-referrer" href={props.source}>{props.author}</a>)</>
+          {props.author && props.source ? <> (Bild: <a target="_blank" referrerPolicy="no-referrer" href={props.source}>{props.author}</a>)</>
+            : props.author && !props.source ? <> (Bild: {props.author})</>
             : null}
           </span>
         </p>
