@@ -12,6 +12,7 @@ export interface ImageBlockProps {
   readonly description?: string
   readonly caption?: string
   readonly author?: string
+  readonly source?: string
 }
 
 const ImageBlockStyle = cssRule<{showBackground: boolean}>(({showBackground}) => ({
@@ -52,7 +53,12 @@ export function ImageBlock(props: ImageBlockProps) {
       />
       {(props.author || props.caption) && (
         <p className={css(ImageBlockCaptionStyle)}>
-          {props.caption} {props.author ? <>(Foto: {props.author})</> : null}
+          {props.caption}
+          <span style={{fontStyle: 'italic', fontSize: 'smaller', color: 'gray'}}>
+          {props.author && props.source ? <> (Bild: <a target="_blank" referrerPolicy="no-referrer" href={props.source}>{props.author}</a>)</>
+            : props.author && !props.source ? <> (Bild: {props.author})</>
+            : null}
+          </span>
         </p>
       )}
     </div>
