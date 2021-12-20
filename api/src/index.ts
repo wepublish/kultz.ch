@@ -153,9 +153,9 @@ async function asyncMain() {
     oauth2Providers: [],
     logger,
     urlAdapter: new KultzURLAdapter({websiteURL}),
-    playground: true,
+    playground: process.env.NODE_ENV === 'development',
     introspection: true,
-    tracing: true
+    tracing: process.env.NODE_ENV === 'development'
   })
 
   program.version('0.0.1')

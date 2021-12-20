@@ -244,7 +244,7 @@ async function applyWebsite() {
                 },
                 initialDelaySeconds: 5,
                 successThreshold: 1,
-                timeoutSeconds: 60
+                timeoutSeconds: 5
               },
               livenessProbe: {
                 httpGet: {
@@ -261,7 +261,7 @@ async function applyWebsite() {
                 initialDelaySeconds: 60,
                 periodSeconds: 60,
                 successThreshold: 1,
-                timeoutSeconds: 60
+                timeoutSeconds: 5
               }
             }
           ]
