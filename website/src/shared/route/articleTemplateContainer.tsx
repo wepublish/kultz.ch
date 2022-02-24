@@ -20,7 +20,7 @@ import {
   titleBlockDataFragment,
   articleMetaDataFragment,
   gridBlockFrontDataGQLfragment,
-  peerMetaDataFragment
+  peerMetaDataFragment, bildwurfAdBlockDataFragment
 } from './gqlFragments'
 
 import {BlockRenderer} from '../blocks/blockRenderer'
@@ -54,6 +54,7 @@ const ArticleQuery = gql`
         ...VimeoVideoBlockData
         ...YoutubeVideoBlockData
         ...SoundCloudTrackBlockData
+        ...BildwurfAdBlockData
         ...EmbedBlockData
         ...LinkPageBreakBlockData
         ...ListicleBlockData
@@ -74,6 +75,7 @@ const ArticleQuery = gql`
   ${vimeoVideoBlockDataFragment}
   ${youtubeVideoBlockDataFragment}
   ${soundCloudTrackBlockDataFragment}
+  ${bildwurfAdBlockDataFragment}
   ${embedBlockDataFragment}
   ${linkPageBreakBlockDataFragment}
   ${listicleBlockDataFragment}

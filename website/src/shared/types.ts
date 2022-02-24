@@ -220,6 +220,7 @@ export enum EmbedType {
   VimeoVideo = 'vimeoVideo',
   YouTubeVideo = 'youTubeVideo',
   SoundCloudTrack = 'soundCloudTrack',
+  BildwurfAd = 'bildwurfAd',
   IFrame = 'iframe'
 }
 
@@ -255,6 +256,11 @@ export interface SoundCloudTrackEmbedData {
   trackID: string
 }
 
+export interface BildwurfAdEmbedData {
+  type: EmbedType.BildwurfAd
+  zoneID: string
+}
+
 export interface IFrameEmbed {
   type: EmbedType.IFrame
   title?: string
@@ -271,6 +277,7 @@ export type EmbedData =
   | VimeoVideoEmbedData
   | YouTubeVideoEmbedData
   | SoundCloudTrackEmbedData
+  | BildwurfAdEmbedData
   | IFrameEmbed
 
 export type EmbedBlock = BaseBlock<BlockType.Embed, EmbedData>

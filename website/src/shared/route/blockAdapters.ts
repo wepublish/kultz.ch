@@ -198,6 +198,16 @@ function getBlocks(blocks: any, articleMeta?: ArticleMeta): Block[] {
           }
         }
 
+      case 'BildwurfAdBlock':
+        return {
+          type: BlockType.Embed,
+          key: index,
+          value: {
+            type: EmbedType.BildwurfAd,
+            zoneID: block.zoneID
+          }
+        }
+
       case 'EmbedBlock':
         return {
           type: BlockType.Embed,

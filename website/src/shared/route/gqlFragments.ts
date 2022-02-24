@@ -276,6 +276,14 @@ export const soundCloudTrackBlockDataFragment = gql`
     trackID
   }
 `
+
+export const bildwurfAdBlockDataFragment = gql`
+  fragment BildwurfAdBlockData on BildwurfAdBlock {
+      __typename
+      zoneID
+  }
+`
+
 export const embedBlockDataFragment = gql`
   fragment EmbedBlockData on EmbedBlock {
     __typename

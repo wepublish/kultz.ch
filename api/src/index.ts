@@ -58,6 +58,10 @@ class KultzURLAdapter implements URLAdapter {
     return ''
   }
 
+  getLoginURL(token: string): string {
+    return ''
+  }
+
 }
 
 async function asyncMain() {
