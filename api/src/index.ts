@@ -39,7 +39,7 @@ class KultzURLAdapter implements URLAdapter {
   }
 
   getPublicPageURL(page: PublicPage): string {
-    return `${this.websiteURL}/${page.slug}.${page.id}`
+    return `${this.websiteURL}/${page.slug}`
   }
 
   getAuthorURL(author: Author): string {
