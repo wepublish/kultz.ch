@@ -18,7 +18,7 @@ import {
   quoteBlockDataFragment,
   titleBlockDataFragment,
   pageMetaDataFragment,
-  gridBlockFrontDataGQLfragment
+  gridBlockFrontDataGQLfragment, bildwurfAdBlockDataFragment
 } from './gqlFragments'
 
 import {PageTemplate} from '../templates/pageTemplate'
@@ -60,6 +60,7 @@ const PageQuery = gql`
         ...VimeoVideoBlockData
         ...YoutubeVideoBlockData
         ...SoundCloudTrackBlockData
+        ...BildwurfAdBlockData  
         ...EmbedBlockData
         ...LinkPageBreakBlockData
         ...ListicleBlockData
@@ -80,6 +81,7 @@ const PageQuery = gql`
   ${vimeoVideoBlockDataFragment}
   ${youtubeVideoBlockDataFragment}
   ${soundCloudTrackBlockDataFragment}
+  ${bildwurfAdBlockDataFragment}
   ${embedBlockDataFragment}
   ${linkPageBreakBlockDataFragment}
   ${listicleBlockDataFragment}
