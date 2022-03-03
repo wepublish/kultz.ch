@@ -15,12 +15,12 @@ if (cluster.isMaster) {
   }
 } else {
   if (!process.env.TOKEN) {
-    console.error('No TOKEN defined in the environment.')
+    console.error('No TOKEN defined in the environment')
     process.exit(1)
   }
 
   if (!process.env.STORAGE_PATH) {
-    console.error('No STORAGE_PATH is defined in the environment.')
+    console.error('No STORAGE_PATH is defined in the environment')
     process.exit(1)
   }
 

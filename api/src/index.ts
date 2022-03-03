@@ -114,7 +114,6 @@ async function asyncMain() {
     locale: process.env.MONGO_LOCALE ?? 'en'
   })
 
-
   const streams: pinoMultiStream.Streams = []
   if(process.env.NODE_ENV === 'development') {
     const prettyStream = pinoMultiStream.prettyStream()

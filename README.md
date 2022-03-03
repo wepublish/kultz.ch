@@ -21,7 +21,6 @@ After that you can watch the project via:
 yarn watch
 ```
 
-
 The following servers will be available:
 
 - **Website:** [http://localhost:5000](http://localhost:5000)
